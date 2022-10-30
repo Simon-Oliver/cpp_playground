@@ -52,6 +52,38 @@ void createItem(std::string itemName, float price, std::string description)
     std::cout << itemName << " " << price << " " << description << std::endl;
 };
 
+void addItems()
+{
+    bool addingItems = true;
+    while (addingItems)
+    {
+        std::string name;
+        std::string price;
+        std::string desc;
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        std::cout << "Enter item name: ";
+
+        std::getline(std::cin, name);
+        std::cout << "Enter price: ";
+
+        std::getline(std::cin, price);
+        std::cout << "Enter description: ";
+
+        std::getline(std::cin, desc);
+
+        createItem(name, std::stof(price), desc);
+        std::string input;
+        std::cout << "Add another item? (y/n): ";
+        std::cin >> input;
+
+        if (input == "n")
+        {
+            addingItems = false;
+            break;
+        };
+    };
+};
+
 std::vector<std::string> split(std::string str, std::string deli = " ")
 {
     std::vector<std::string> tokens;

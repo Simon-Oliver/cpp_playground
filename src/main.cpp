@@ -44,38 +44,8 @@ int main()
         switch (choice)
         {
         case 1:
-        {
-            bool addingItems = true;
-            while (addingItems)
-            {
-                std::string name;
-                float price;
-                std::string desc;
-
-                std::cout << "Enter item name: ";
-                std::cin >> name;
-
-                std::cout << "Enter price: ";
-                std::cin >> price;
-
-                std::cout << "Enter description: ";
-                std::cin >> desc;
-
-                createItem(name, price, desc);
-
-                std::string input;
-                std::cout << "Add another item? (y/n): ";
-                std::cin >> input;
-
-                if (input == "n")
-                {
-                    addingItems = false;
-                    break;
-                };
-            };
+            addItems();
             break;
-        }
-
         case 4:
             getItems();
         default:
