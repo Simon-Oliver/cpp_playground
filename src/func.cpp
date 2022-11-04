@@ -6,11 +6,13 @@
 
 void menu(std::vector<std::string> options)
 {
+    std::cout << "--------------- MENU ---------------" << std::endl;
     for (size_t i = 0; i < options.size(); i++)
     {
-        std::cout << "[" << std::to_string(i + 1) << "]"
+        std::cout << "\t[" << std::to_string(i + 1) << "]"
                   << " " + options[i] << std::endl;
     };
+    std::cout << "------------------------------------" << std::endl;
 };
 
 int getInput(std::string message, int maxOption)
@@ -21,7 +23,6 @@ int getInput(std::string message, int maxOption)
     {
         std::cout << message;
         std::cin >> input;
-
         if (std::cin.fail())
         {
             std::cout << "Input must be an integer between 1 and " + std::to_string(maxOption) + "." << std::endl;
@@ -101,7 +102,7 @@ std::vector<std::string> split(std::string str, std::string deli = " ")
     return tokens;
 }
 
-void getItems()
+std::vector<std::vector<std::string>> readItemsFile()
 {
     std::string deli = ",";
     std::ifstream itemFile("./items.txt");
@@ -117,12 +118,43 @@ void getItems()
     {
         items.push_back(split(line, ","));
     };
+    return items;
+};
+
+void getItems()
+{
+    std::vector<std::vector<std::string>> items = readItemsFile();
     std::cout << "Printing the vector -----" << std::endl;
     for (size_t i = 0; i < items.size(); i++)
     {
+
+        std::cout << "ID: " << i << std::endl;
         std::cout << "Name: " << items[i][0] << std::endl;
-        std::cout << "Price: " << items[i][1] << std::endl;
-        std::cout << "Description: " << items[i][2] << std::endl;
         std::cout << "-------------------" << std::endl;
     }
 };
+
+void deleteItem(int id)
+{
+    std::vector<std::vector<std::string>> items = readItemsFile();
+    items.erase(items.begin() + id);
+    std::cout << "+++++++ Items left +++++++" << std::endl;
+
+    std::ofstream itemFile("./items.txt");
+    if (itemFile)
+    {
+        for (size_t i = 0; i < items.size(); i++)
+        {
+            itemFile << items[i][0] << "," << items[i][1] << "," << items[i][2] << std::endl;
+        }
+
+        itemFile.close();
+    }
+}
+
+std::vector<std::string> getItem(int id)
+{
+    std::vector<std::string> item;
+    std::vector<std::vector<std::string>> items = readItemsFile();
+    return item = items[id];
+}

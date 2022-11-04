@@ -1,4 +1,5 @@
 #include "func.h"
+#include "menu.h"
 #include <string>
 #include <vector>
 #include <iostream>
@@ -46,11 +47,24 @@ int main()
             break;
         };
 
+        std::vector<std::string> item;
+
         switch (choice)
         {
         case 1:
             addItems();
             break;
+        case 2:
+            item = getItem(2);
+            std::cout << item[0] << "\n"
+                      << item[1] << "\n"
+                      << item[2] << std::endl;
+            break;
+        case 3:
+            int id;
+            std::cout << "Enter ID to delete: ";
+            std::cin >> id;
+            deleteItem(id);
         case 4:
             getItems();
         default:
