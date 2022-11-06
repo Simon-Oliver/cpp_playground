@@ -46,7 +46,6 @@ int main()
             std::cout << "\nApplication is closing." << std::endl;
             break;
         };
-
         std::vector<std::string> item;
 
         switch (choice)
