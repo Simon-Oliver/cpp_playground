@@ -31,5 +31,11 @@ int main()
     std::cout << person1.fName << " " << person1.age << std::endl;
     std::cout << person2.fName << " " << person2.age << std::endl;
 
+    struct person *p1 = NULL; // Create a pointer variable and initialise it to NULL
+    p1 = &person1;            // Store pointer value for person1 in p1
+
+    p1->fName = "Maximillian"; // Overwrite fName for person1
+    std::cout << person1.fName << " " << person1.age << std::endl;
+
     return 0;
 };
